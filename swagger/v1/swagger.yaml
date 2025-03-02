@@ -1,0 +1,34 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  api./blogs:
+    post:
+      summary: Creates a blog
+      operationId: CreateBlog
+      parameters: []
+      responses:
+        '201':
+          description: blog created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+              required:
+              - title
+              - content
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

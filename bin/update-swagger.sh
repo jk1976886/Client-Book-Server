@@ -1,0 +1,1 @@
+rake rswag:specs:swaggerize PATTERN="spec/swagger/**/*_spec.rb"
