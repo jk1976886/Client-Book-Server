@@ -59,3 +59,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rswag'
 
 gem 'rspec-rails'
+
+gem "devise", "~> 4.9"
+
+gem "pg"
