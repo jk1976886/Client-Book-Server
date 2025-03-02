@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  scope 'authentication' do
+    devise_for :users, controllers: {
+      sessions: 'authentication/sessions',
+      registrations: 'authentication/registrations',
+      passwords: 'authentication/passwords',
+      confirmations: 'authentication/confirmations'
+    }
+  end
 
-  scope 'api' do
-    post 'blogs' => 'blogs#create'
+  scope 'api', defaults: {format: :json} do
+    resources :clients
   end
 end

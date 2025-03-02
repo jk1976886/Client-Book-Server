@@ -4,31 +4,88 @@ info:
   title: API V1
   version: v1
 paths:
-  api./blogs:
-    post:
-      summary: Creates a blog
-      operationId: CreateBlog
-      parameters: []
+  api/clients:
+    get:
+      summary: index clients
+      operationId: indexClients
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+        required: false
+      - name: offset
+        in: query
+        schema:
+          type: integer
+        required: false
       responses:
-        '201':
-          description: blog created
+        '200':
+          description: index clients
         '422':
           description: invalid request
+  authentication/users/sign_in:
+    post:
+      summary: sign in
+      operationId: signIn
+      parameters: []
+      responses:
+        '200':
+          description: signed in
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                title:
-                  type: string
-                content:
-                  type: string
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                  - email
+                  - password
               required:
-              - title
-              - content
+              - user
+  authentication/users/sign_out:
+    get:
+      summary: sign out
+      operationId: signOut
+      responses:
+        '204':
+          description: index clients
+  authentication/users/:
+    post:
+      summary: sign up
+      operationId: signUp
+      parameters: []
+      responses:
+        '200':
+          description: sign up
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                  - email
+                  - password
+              required:
+              - user
 servers:
+- url: http://localhost:3000
 - url: https://{defaultHost}
   variables:
     defaultHost:
-      default: www.example.com
+      default: www.jacky-client-book.ca

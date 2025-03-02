@@ -1,21 +1,18 @@
 require 'swagger_helper'
 
-RSpec.describe 'api/clients', type: :request, swagger: true do
-  path 'api./blogs' do
-    post 'Creates a blog' do
-      operationId 'CreateBlog'
+RSpec.describe 'api/clients', type: :request, swagger: true, resource: :user do
+  path 'api/clients' do
+    get 'index clients' do
+      operationId 'indexClients'
       consumes 'application/json'
-      parameter name: :blog, in: :body, schema: {
-        type: :object,
-        properties: {
-          title: { type: :string },
-          content: { type: :string }
-        },
-        required: [ 'title', 'content' ]
-      }
+      parameter name: :limit, in: :query, schema: { type: :integer }, required: false
+      parameter name: :offset, in: :query, schema: { type: :integer }, required: false
 
-      response '201', 'blog created' do
-        let(:blog) { { title: 'foo', content: 'bar' } }
+      let(:limit) {10}
+
+      let(:offset) {0}
+
+      response '200', 'index clients' do
         run_test!
       end
 

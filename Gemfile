@@ -63,3 +63,5 @@ gem 'rspec-rails'
 gem "devise", "~> 4.9"
 
 gem "pg"
+
+gem "rack-cors"

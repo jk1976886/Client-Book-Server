@@ -1,6 +1,6 @@
 {
   "npmName": "@jacky/client-book-api-client",
-  "npmVersion": "0.0.1",
+  "npmVersion": "0.0.2",
   "npmRepository": "https://npm.pkg.github.com",
   "ngVersion": "14.2.12"
 }
