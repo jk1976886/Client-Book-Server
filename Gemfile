@@ -65,3 +65,5 @@ gem "devise", "~> 4.9"
 gem "pg"
 
 gem "rack-cors"
+
+gem "paranoia", "~> 2.2"
