@@ -46,6 +46,7 @@ RSpec.describe 'authentication/users', type: :request, swagger: true do
       operationId 'signOut'
       consumes 'application/json'
       produces 'application/json'
+
       response '204', 'index clients' do
         let(:password) { 'Testing123'}
         let(:user) { User.create!(email: 'john@doe.com', password: password)}
@@ -62,6 +63,7 @@ RSpec.describe 'authentication/users', type: :request, swagger: true do
       operationId 'signUp'
       consumes 'application/json'
       produces 'application/json'
+
       parameter name: :sign_up_body, in: :body, schema: {
         type: 'object',
         properties: {
@@ -89,6 +91,18 @@ RSpec.describe 'authentication/users', type: :request, swagger: true do
             password: password
           }
         }}
+        run_test!
+      end
+    end
+  end
+
+  path "/api/current_user" do
+    get "shows the current user" do
+      operationId "currentUser"
+      consumes 'application/json'
+      produces 'application/json'
+
+      response '200', 'user shown' do
         run_test!
       end
     end

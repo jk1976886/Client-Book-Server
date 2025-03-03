@@ -13,5 +13,8 @@ Rails.application.routes.draw do
 
   scope 'api', defaults: {format: :json} do
     resources :clients
+    resources :client_tags
+    resources :client_client_tags
+    get '/current_user' => 'users#show_current_user'
   end
 end
