@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Authentication::RegistrationsController < Devise::RegistrationsController
+  respond_to :json
+
   def respond_with(resource, _opts = {})
     puts "Jacky resource"
     puts resource

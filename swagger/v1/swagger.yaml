@@ -24,6 +24,72 @@ paths:
           description: index clients
         '422':
           description: invalid request
+    post:
+      summary: create client
+      operationId: createClients
+      parameters: []
+      responses:
+        '200':
+          description: index clients
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                wechat:
+                  type: string
+              required: []
+  api/clients/{id}:
+    get:
+      summary: show client
+      operationId: showClient
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: show client
+    put:
+      summary: update client
+      operationId: updateClient
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: update client
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                wechat:
+                  type: string
+              required: []
   authentication/users/sign_in:
     post:
       summary: sign in
@@ -51,7 +117,7 @@ paths:
               required:
               - user
   authentication/users/sign_out:
-    get:
+    delete:
       summary: sign out
       operationId: signOut
       responses:
@@ -83,6 +149,13 @@ paths:
                   - password
               required:
               - user
+  "/api/current_user":
+    get:
+      summary: shows the current user
+      operationId: currentUser
+      responses:
+        '200':
+          description: user shown
 servers:
 - url: http://localhost:3000
 - url: https://{defaultHost}

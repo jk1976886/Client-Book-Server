@@ -42,7 +42,7 @@ RSpec.describe 'authentication/users', type: :request, swagger: true do
   end
 
   path 'authentication/users/sign_out' do
-    get 'sign out' do
+    delete 'sign out' do
       operationId 'signOut'
       consumes 'application/json'
       produces 'application/json'

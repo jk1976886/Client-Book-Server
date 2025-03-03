@@ -1,15 +1,25 @@
 # frozen_string_literal: true
 
 class Authentication::SessionsController < Devise::SessionsController
+  respond_to :json
+  skip_before_action :verify_signed_out_user, only: :destroy
+
+  protected
+
   def respond_with(resource, _opts = {})
     puts "Jacky sessions resource"
     puts resource
+    @user = resource
+    render 'users/show'
+  end
 
-    if resource.errors.any?
-      render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity
+  private
+
+  def respond_to_on_destroy
+    if request.format.json?
+      render json: { message: "Logged out successfully" }, status: :ok
     else
-      @user = resource
-      render 'users/show'
+      head :no_content
     end
   end
 end
